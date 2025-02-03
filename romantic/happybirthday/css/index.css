@@ -1,9 +1,51 @@
-body{overflow: hidden;}
-.box{height: 100%;}
-.box .pic{height: 300px;margin-top: 150px;position:relative;transform-style: preserve-3d;perspective: 800px;}
-.box .pic img{width: 300px;position: absolute;
--webkit-box-reflect:below 0 -webkit-linear-gradient(top,rgba(0,0,0,.1),rgba(0,0,0,.5));
-transition: 1s;}
-.box .pic .now{transform: translateZ(100px);}
-.box .pic .front{transform: rotateY(45deg) translateZ(-100px);}
-.box .pic .back{transform: rotateY(-45deg) translateZ(-100px);}
+/* 全局样式，设置 body 元素的溢出隐藏，避免出现滚动条 */
+body {overflow: hidden;}
+
+/* 定义名为 .box 的类选择器样式
+   设置其高度为 100%，通常是相对于其父元素的高度
+   若父元素没有明确高度，这里的 100% 可能不会按预期生效 */
+.box {height: 100%;}
+
+/* 定义 .box 下的 .pic 类选择器样式
+   1. 设置元素高度为 300px
+   2. 设置元素距离顶部的外边距为 150px
+   3. 将元素的定位模式设置为相对定位，为其子元素的绝对定位提供参考
+   4. 设置元素的 3D 变换样式，使子元素的 3D 变换效果能够正确显示
+   5. 设置透视距离为 800px，决定了 3D 场景的视角，值越小，透视效果越明显 */
+.box .pic {
+    height: 300px;
+    margin-top: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+/* 定义 .box 下的 .pic 里的 img 元素样式
+   1. 设置图片的宽度为 300px
+   2. 将图片的定位模式设置为绝对定位，使其可以相对于 .pic 元素进行定位
+   3. 使用 -webkit-box-reflect 属性为图片添加倒影效果
+      below 表示倒影在图片下方显示
+      0 表示倒影与图片之间的间距为 0
+      -webkit-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, .5)) 定义了一个从顶部开始的线性渐变，
+      渐变颜色从透明度为 0.1 的黑色过渡到透明度为 0.5 的黑色
+   4. 设置过渡效果为 1 秒，使图片的变换动画在 1 秒内完成 */
+.box .pic img {
+    width: 300px;
+    position: absolute;
+    -webkit-box-reflect: below 0 -webkit-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, .5));
+    transition: 1s;
+}
+
+/* 定义 .box 下的 .pic 里的拥有 .now 类的元素样式
+   将元素沿着 Z 轴正向平移 100px，使其在 3D 空间中向前突出 */
+.box .pic .now {transform: translateZ(100px);}
+
+/* 定义 .box 下的 .pic 里的拥有 .front 类的元素样式
+   1. 将元素绕 Y 轴顺时针旋转 45 度
+   2. 然后沿着 Z 轴负向平移 100px，使元素在 3D 空间中呈现出一定的倾斜和后退效果 */
+.box .pic .front {transform: rotateY(45deg) translateZ(-100px);}
+
+/* 定义 .box 下的 .pic 里的拥有 .back 类的元素样式
+   1. 将元素绕 Y 轴逆时针旋转 45 度
+   2. 然后沿着 Z 轴负向平移 100px，使元素在 3D 空间中呈现出相反方向的倾斜和后退效果 */
+.box .pic .back {transform: rotateY(-45deg) translateZ(-100px);}

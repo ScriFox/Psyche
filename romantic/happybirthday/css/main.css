@@ -1,14 +1,78 @@
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; } 
-body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; } 
-h1, h2, h3, h4, h5, h6{ font-size:100%; } 
-address, cite, dfn, em, var { font-style:normal; } 
-code, kbd, pre, samp { font-family:couriernew, courier, monospace; } 
-small{ font-size:12px; } 
-ul, ol { list-style:none; } 
-a { text-decoration:none; } 
-a:hover { text-decoration:underline; } 
-sup { vertical-align:text-top; } 
-sub{ vertical-align:text-bottom; } 
-legend { color:#000; } 
-fieldset, img { border:0; } 
-button, input, select, textarea { font-size:100%; } table { border-collapse:collapse; border-spacing:0; } 
+/* 重置所有元素的外边距和内边距，确保所有元素的初始样式一致 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+/* 设置字体为 12px Tahoma 字体，若 Tahoma 不可用则使用 Arial，再不行就使用黑体（SimHei） */
+body, button, input, select, textarea { 
+    font: 12px/1.5 Tahoma, Arial, "SimHei"; 
+}
+
+/* 设置所有标题元素（h1 到 h6）的字体大小为 100% */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+
+/* 设置某些元素（address, cite, dfn, em, var）不使用斜体 */
+address, cite, dfn, em, var { 
+    font-style: normal; 
+}
+
+/* 设置 code、kbd、pre 和 samp 使用等宽字体（Courier New） */
+code, kbd, pre, samp { 
+    font-family: "Courier New", Courier, monospace; 
+}
+
+/* 设置小号字体为 12px */
+small { 
+    font-size: 12px; 
+}
+
+/* 去除无序和有序列表的默认样式（无项目符号） */
+ul, ol { 
+    list-style: none; 
+}
+
+/* 去除链接的下划线 */
+a { 
+    text-decoration: none; 
+}
+
+/* 设置链接在 hover 时显示下划线 */
+a:hover { 
+    text-decoration: underline; 
+}
+
+/* 设置上标（sup）的垂直对齐方式为文本顶部 */
+sup { 
+    vertical-align: text-top; 
+}
+
+/* 设置下标（sub）的垂直对齐方式为文本底部 */
+sub { 
+    vertical-align: text-bottom; 
+}
+
+/* 设置 legend 元素的字体颜色为黑色 */
+legend { 
+    color: #000; 
+}
+
+/* 移除 fieldset 和 img 的边框 */
+fieldset, img { 
+    border: 0; 
+}
+
+/* 统一设置按钮、输入框、选择框和文本区域的字体大小为 100% */
+button, input, select, textarea { 
+    font-size: 100%; 
+}
+
+/* 设置表格的边框合并，去除空白间隔 */
+table { 
+    border-collapse: collapse; 
+    border-spacing: 0; 
+}
+
+

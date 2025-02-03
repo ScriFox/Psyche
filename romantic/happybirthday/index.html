@@ -1,22 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Happy Birthday to my sweet little princess!</title>
-		<meta name="Keywords" content="照片墙"/>
-		<meta name="Description" content="带3D倒影效果的照片墙"/>
-		<link rel="stylesheet" href="css/main.css" />
-		<link rel="stylesheet" href="css/index.css" /> 
-		<script type="text/javascript" src="js/jquery-1.11.2.min.js" ></script>
-		<script type="text/javascript" src="js/index.js" ></script>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Happy Birthday to my sweet little princess!</title>
+	<meta name="Keywords" content="照片墙"/>
+	<meta name="Description" content="带3D倒影效果的照片墙"/>
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/index.css" /> 
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js" ></script>
+	<script type="text/javascript" src="js/index.js" ></script>
+
+	<style>
+		/* 全局样式 */
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			background-color: #f0f0f0;
+		}
 	
-	<body>
-		<div class="box">
-			<div class="pic">
-			</div>
+		/* 音乐按钮样式 */
+		.music-button {
+			position: fixed;
+			top: 20px;
+			right: 20px;
+			width: 50px;
+			height: 50px;
+			background-color: #87CEEB; /* 淡蓝色背景 */
+			border-radius: 50%; /* 圆形 */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+	
+		/* 音符图标 */
+		.music-button::before {
+			content: "♪";
+			font-size: 40px;
+			color: white; /* 白色音符 */
+		}
+	
+		/* 按钮悬停效果 */
+		.music-button:hover {
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+			background-color: #6CB4EE; /* 悬停时稍深的蓝色 */
+		}
+	
+		/* 按钮旋转动画 */
+		.music-button.rotate {
+			animation: spin 4s linear infinite; /* 旋转速度变慢 */
+		}
+	
+		@keyframes spin {
+			0% {
+			transform: rotate(0deg);
+			}
+			100% {
+			transform: rotate(360deg);
+			}
+		}
+		</style>
+</head>
+	
+
+<body>
+
+	<div class="box">
+		<div class="pic">
 		</div>
-	</body>
+	</div>
+
 	
+	<!-- fms_1.1🐶右上角音乐播放控制 -->
+	<!-- 音乐按钮 -->
+	<div class="music-button" id="musicButton"></div>
+
+	<!-- 音频元素 -->
+	<audio id="bgm" loop autoplay>
+	<source src="泽音Melody - 蝴蝶.mp3" type="audio/mpeg">
+	Your browser does not support the audio element.
+	</audio>
+
+	<script>
+	// 获取按钮和音频元素
+	const musicButton = document.getElementById('musicButton');
+	const backgroundMusic = document.getElementById('bgm');
+
+	// 网页加载时自动播放音乐
+	window.addEventListener('load', () => {
+		backgroundMusic.play().catch(error => {
+		console.log('Autoplay failed:', error);
+		});
+	});
+
+	// 点击按钮时切换旋转状态和播放/暂停音乐
+	musicButton.addEventListener('click', () => {
+		if (backgroundMusic.paused) {
+		backgroundMusic.play();
+		musicButton.classList.add('rotate'); // 添加旋转动画
+		} else {
+		backgroundMusic.pause();
+		musicButton.classList.remove('rotate'); // 移除旋转动画
+		}
+	});
+	</script>
+
+
+	<!-- fms_1.1🐶顶部中间视频控制 -->
+	<style>
+		/* 固定按钮样式 */
+		.fixed-button {
+			position: fixed;
+			top: 6%;
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: pink;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 20px;
+			cursor: pointer;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		/* 视频弹窗 */
+		.video-modal {
+			display: none;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: rgba(0, 0, 0, 0.9);
+			padding: 20px;
+			border-radius: 10px;
+		}
+
+		/* 遮罩层 */
+		.overlay {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.7);
+		}
+	</style>
+
+	<!-- 固定按钮 -->
+	<button class="fixed-button" onclick="openVideo()">公主请观看 →</button>
+
+	<!-- 视频弹窗 -->
+	<div class="overlay" id="overlay" onclick="closeVideo()"></div>
+	<div class="video-modal" id="videoModal">
+		<video id="videoPlayer" width="600" controls>
+			<source src="fms测试.mp4" type="video/mp4">
+		</video>
+	</div>
+
+	<script>
+		let bgm = document.getElementById('bgm');
+		let videoPlayer = document.getElementById('videoPlayer');
+		let overlay = document.getElementById('overlay');
+		let videoModal = document.getElementById('videoModal');
+		let lastBgmTime = 0; // 记录 BGM 播放位置
+
+		// 打开视频并全屏播放
+		function openVideo() {
+			lastBgmTime = bgm.currentTime; // 记录当前 BGM 播放时间
+			bgm.pause(); // 暂停 BGM
+			overlay.style.display = 'block';
+			videoModal.style.display = 'block';
+			videoPlayer.play();
+
+			// 全屏播放视频
+			if (videoPlayer.requestFullscreen) {
+				videoPlayer.requestFullscreen(); // 标准浏览器
+			} else if (videoPlayer.mozRequestFullScreen) {
+				videoPlayer.mozRequestFullScreen(); // Firefox
+			} else if (videoPlayer.webkitRequestFullscreen) {
+				videoPlayer.webkitRequestFullscreen(); // Chrome, Safari
+			} else if (videoPlayer.msRequestFullscreen) {
+				videoPlayer.msRequestFullscreen(); // IE/Edge
+			}
+		}
+
+		// 关闭视频
+		function closeVideo() {
+			videoPlayer.pause();
+			videoPlayer.currentTime = 0;
+			overlay.style.display = 'none';
+			videoModal.style.display = 'none';
+			bgm.pause(); // 停止BGM
+			lastBgmTime = bgm.currentTime; // 记录当前BGM的播放时间
+			bgm.currentTime = bgm.currentTime; // 保持音乐当前播放时间
+
+			// 重新播放 BGM，从暂停的时间点继续
+			bgm.currentTime = lastBgmTime;
+			bgm.play();
+		}
+		
+	</script>
+
+</body>
+
 </html>
