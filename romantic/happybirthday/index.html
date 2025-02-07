@@ -117,7 +117,7 @@
 	</script>
 
 
-	<!-- fms_1.1🐶顶部中间视频控制 -->
+	<!-- fms_1.2🐶顶部中间视频控制 -->
 	<style>
 		/* 固定按钮样式 */
 		.fixed-button {
@@ -160,13 +160,13 @@
 	</style>
 
 	<!-- 固定按钮 -->
-	<button class="fixed-button" onclick="openVideo()">公主请观看 →</button>
+	<button class="fixed-button" onclick="openVideo()">公主请观看 →<br>蝴蝶诗行·Psyche's Verses</button>
 
 	<!-- 视频弹窗 -->
 	<div class="overlay" id="overlay" onclick="closeVideo()"></div>
 	<div class="video-modal" id="videoModal">
 		<video id="videoPlayer" width="600" controls>
-			<source src="蝴蝶诗行.mp4" type="video/mp4">
+			<source src="蝴蝶诗行·Psyche's Verses.mp4" type="video/mp4">
 		</video>
 	</div>
 
@@ -214,6 +214,60 @@
 		
 	</script>
 
-</body>
+
+    <!-- fms_1.3🐶b站链接 -->
+    <style>
+        /* 设置页面样式 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 按钮容器，固定在顶部偏右 */
+        .button-container {
+            position: fixed;
+            top: 8%; /* 距离顶部20px */
+            right: 25%; /* 距离右侧20px */
+            z-index: 1000; /* 确保按钮在最上层 */
+        }
+
+        /* 透明按钮样式 */
+        .transparent-button {
+            padding: 10px 20px;
+            font-size: 20px;
+            color: #00a1d6; /* 按钮文字颜色 */
+            background-color: transparent; /* 按钮背景透明 */
+            border: none; /* 去掉边框 */
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .transparent-button:hover {
+            color: #0084b4; /* 悬停时文字颜色变深 */
+        }
+
+        /* 示例内容样式 */
+        .content {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            height: 100vh;
+        }
+    </style>
+
+    <!-- 按钮容器 -->
+    <div class="button-container">
+        <button class="transparent-button"
+		onclick="window.open('https://space.bilibili.com/3021363?spm_id_from=333.1007.0.0', '_blank')">
+		b站直达→</button>
+    </div>
+
+    <!-- 示例内容 -->
+    <div class="content">
+        <h1>页面内容</h1>
+        <p>这是一个示例页面，按钮在顶部偏右，完全透明且无边框。</p>
+    </div>
 
 </html>
